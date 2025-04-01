@@ -9,6 +9,12 @@ const pool = new Pool({ connectionString: process.env.DB_URL });
 app.use(cors());
 app.use(express.json());
 
+// ✅ Root route for health check (for UptimeRobot etc.)
+app.get("/", (req, res) => {
+  res.send("🟢 Travel backend is running!");
+});
+
+
 // Get all offers (basic info)
 app.get("/api/offers", async (req, res) => {
   try {
